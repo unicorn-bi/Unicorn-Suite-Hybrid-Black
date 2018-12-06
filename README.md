@@ -1,4 +1,4 @@
-# Unicorn-Suite-1.18
+# Unicorn Suite Hybrid Black
 
 Information:
 [Unicorn Suite](https://github.com/unicorn-bi/Unicorn-Suite-1.18/wiki)
