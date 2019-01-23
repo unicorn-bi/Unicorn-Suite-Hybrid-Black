@@ -1,6 +1,6 @@
 # Unicorn Suite Hybrid Black
 
-[![Unicorn Speller](https://img.youtube.com/vi/CTmC0481adE/0.jpg)](https://www.youtube.com/watch?v=CTmC0481adE "Unicorn Speller") {align=center}
+[![Unicorn Speller](https://img.youtube.com/vi/CTmC0481adE/0.jpg)](https://www.youtube.com/watch?v=CTmC0481adE "Unicorn Speller")
 
 Information:
 [Unicorn Suite](https://github.com/unicorn-bi/Unicorn-Suite-1.18/wiki)
