@@ -1,14 +1,3 @@
-# Unicorn-Suite-1.18
+# Unicorn .NET Examples
 
-Prerequisites:
-- Unicorn Suite Hybrid Black 1.18.00
-- Visual Studio
--- .NET framework 4.7.1
-
-1. Ensure that the Unicorn Suite Hybrid Black is installed on your computer.
-2. Copy the folder containing the solution to C:\Users\<username>\Documents\gtec\Unicorn Suite\Hybrid Black\Unicorn DotNet\Examples\
-3. Open the solution 'UnicornLSL.sln' in Visual Studio
-4. Select the desired configuration (Release/Debug) and build the project
-
-ATTENTION: If the build fails the prerequisites have not been installed properly or the project has not been copied to the appropriate path (post build scripts will fail).
-Check the paths to the referenced Unicorn Suite libraries in the project file settings, as well as in the post build action. 
+[Unicorn LSL](https://github.com/unicorn-bi/Unicorn-Suite-Hybrid-Black/tree/master/Unicorn%20.NET%20API/UnicornLSL)

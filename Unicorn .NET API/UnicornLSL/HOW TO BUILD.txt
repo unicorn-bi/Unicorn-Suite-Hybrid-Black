@@ -1,10 +1,11 @@
 Prerequisites:
+- Microsoft Windows 10 Pro, 64-bit, English
 - Unicorn Suite Hybrid Black 1.18.00
-- Visual Studio
--- .NET framework 4.7.1
+- Microsoft Visual Studio
+-- Microsoft .NET framework 4.7.1
 
 1. Ensure that the Unicorn Suite Hybrid Black is installed on your computer.
-2. Copy the folder containing the solution to C:\Users\<username>\Documents\gtec\Unicorn Suite\Hybrid Black\Unicorn DotNet\Examples\
+2. Copy the files in this folder to C:\Users\<username>\Documents\gtec\Unicorn Suite\Hybrid Black\Unicorn DotNet\Examples\UnicornLSL
 3. Open the solution 'UnicornLSL.sln' in Visual Studio
 4. Select the desired configuration (Release/Debug) and build the project
 
