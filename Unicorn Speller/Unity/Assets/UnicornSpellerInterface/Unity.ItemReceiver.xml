@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Unity.ItemReceiver</name>
+    </assembly>
+    <members>
+        <member name="T:Intendix.Board.BoardItem">
+            <summary>
+            Represents one item of the speller board.
+            </summary>
+        </member>
+        <member name="E:Intendix.Board.BoardItem.PropertyChanged">
+            <summary>
+            Event that will be triggered when a property changes its value.
+            </summary>
+        </member>
+        <member name="M:Intendix.Board.BoardItem.NotifyPropertyChanged(System.String)">
+            <summary>
+            Triggers a new <see cref="E:Intendix.Board.BoardItem.PropertyChanged"/>-Event.
+            </summary>
+            <param name="propertyName">exact name of the property that has been changed.</param>
+        </member>
+        <member name="P:Intendix.Board.BoardItem.Enabled">
+            <summary>
+            Gets or sets the enabled state of the item.
+            </summary>
+        </member>
+        <member name="P:Intendix.Board.BoardItem.Removable">
+            <summary>
+            Gets or sets the removable state of the item.
+            If <see langword="true"/>, item can be removed from the board.
+            If <see langword="false"/>, item cannot be removed from the board.
+            </summary>
+        </member>
+        <member name="P:Intendix.Board.BoardItem.SupportsDoubleSecurity">
+            <summary>
+            Gets or sets if the item should support double security.
+            </summary>
+            <remarks>
+            Double security means, that an item has to be selected twice before it was actually selected.
+            If <see langword="false"/>, the item will be selected at once after one selection.
+            </remarks>
+        </member>
+        <member name="P:Intendix.Board.BoardItem.Name">
+            <summary>
+            Gets or sets the name of the item.
+            </summary>
+        </member>
+        <member name="P:Intendix.Board.BoardItem.Text">
+            <summary>
+            Gets or sets the text that should be displayed on the item.
+            </summary>
+        </member>
+        <member name="P:Intendix.Board.BoardItem.OutputText">
+            <summary>
+            Gets or sets the text that should be written when according control will be selected by the user.
+            </summary>
+        </member>
+        <member name="P:Intendix.Board.BoardItem.FlashImageFilename">
+            <summary>
+            Gets or sets the filename to the picture that should be displayed on the speller board when flashing and loads the image.
+            When the image couldn't be loaded (e.g. because of wrong filename or wrong file format) the value will be set to <c>String.Empty</c> and <see cref="P:Intendix.Board.BoardItem.FlashImage"/> will return a null reference.
+            </summary>
+        </member>
+        <member name="P:Intendix.Board.BoardItem.DarkImageFilename">
+            <summary>
+            Gets or sets the filename to the picture that should be displayed on the speller board when not flashing and loads the image.
+            When the image couldn't be loaded (e.g. because of wrong filename or wrong file format) the value will be set to <c>String.Empty</c> and <see cref="P:Intendix.Board.BoardItem.DarkImage"/> will return a null reference.
+            </summary>
+        </member>
+        <member name="P:Intendix.Board.BoardItem.FlashImage">
+            <summary>
+            Gets the image loaded from <see cref="P:Intendix.Board.BoardItem.FlashImageFilename"/>. 
+            If the image couldn't be loaded, a null reference will be returned.
+            </summary>
+        </member>
+        <member name="P:Intendix.Board.BoardItem.DarkImage">
+            <summary>
+            Gets the image loaded from <see cref="P:Intendix.Board.BoardItem.DarkImageFilename"/>.
+            If the image couldn't be loaded, a null reference will be returned.
+            </summary>
+        </member>
+        <member name="M:Intendix.Board.BoardItem.#ctor">
+            <summary>
+            Creates an empty configuration for a cell of the speller board.
+            </summary>
+        </member>
+        <member name="M:Intendix.Board.BoardItem.#ctor(System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates a user defined configuration for a cell.
+            </summary>
+            <param name="enabled">Indicates whether the item should be displayed in the board.</param>
+            <param name="removable">Indicates whether the item can be removed from the board.</param>
+            <param name="supportsDoubleSecurity">Indicates whether the item has to be selected twice to be chosen actually.</param>
+            <param name="itemName">A name identifying the item.</param>
+            <param name="text">The text to be displayed on the speller board representing the item.</param>
+            <param name="outputText">The text that will be written into the output window if the item is chosen.</param>
+            <param name="flashImageFilename">The path to the picture to be displayed on the speller board representing the item when it is not flashing.</param>
+            <param name="darkImageFilename">The path to the picture to be displayed on the speller board representing the item when it is flashing.</param>
+            <remarks>If an image specified in <paramref name="flashImageFilename"/> or <paramref name="darkImageFilename"/> couldn't be loaded (e.g. because of wrong filename or wrong file format), the path value will be set to <see cref="F:System.String.Empty"/> and the object (<see cref="P:Intendix.Board.BoardItem.FlashImage"/> or <see cref="P:Intendix.Board.BoardItem.DarkImage"/>) will return a null reference.</remarks>
+        </member>
+        <member name="M:Intendix.Board.BoardItem.DoAction(Intendix.Board.ItemActionArgs)">
+            <summary>
+            Will be executed if this item was selected by the user.
+            Override this method if an item has to execute specific commands on selection.
+            </summary>
+            <param name="args">Data needed by the method.</param>
+        </member>
+        <member name="T:Intendix.Board.ItemActionArgs">
+            <summary>
+            Represents a collection of arguments to pass to the <see cref="M:Intendix.Board.BoardItem.DoAction(Intendix.Board.ItemActionArgs)"/> method.
+            </summary>
+        </member>
+        <member name="P:Intendix.Board.ItemActionArgs.OutputTextbox">
+            <summary>
+            Gets the textbox containing the output text.
+            </summary>
+        </member>
+        <member name="M:Intendix.Board.ItemActionArgs.#ctor(System.Windows.Forms.RichTextBox)">
+            <summary>
+            Creates a new instance of the <see cref="T:Intendix.Board.ItemActionArgs"/> class.
+            </summary>
+            <param name="outputTextbox"></param>
+        </member>
+        <member name="T:Unity.ItemReceiver.IndependendAssemblyDeserializationBinder">
+            <summary>
+            Allows the <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter"/> to deserialize received objects from a class whose interface is not necessarily defined in the original assembly it was created from before sending.
+            </summary>
+        </member>
+        <member name="T:Unity.ItemReceiver.ItemReceiver">
+            <summary>
+            Receives classified items from the network that intendiX has sent and performs a user-defined custom action being implmented in a derived class.
+            </summary>
+            <remarks>This is the base class of all extendiX applications. It provides simple reception of intendiX items from the network. Custom user-defined action can be implemented by overriding the <see cref="M:Unity.ItemReceiver.ItemReceiver.ItemReceived(Intendix.Board.BoardItem)"/> method.</remarks>
+        </member>
+        <member name="T:Unity.ItemReceiver.ItemReceiver.NewLogMessageEventHandler">
+            <summary>
+            Represents the method that will handle the <see cref="E:Unity.ItemReceiver.ItemReceiver.NewLogMessage"/> event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="message">The log message.</param>
+        </member>
+        <member name="E:Unity.ItemReceiver.ItemReceiver.NewLogMessage">
+            <summary>
+            Occurs when a new log message of the <see cref="T:Unity.ItemReceiver.ItemReceiver"/> should be populated.
+            </summary>
+        </member>
+        <member name="E:Unity.ItemReceiver.ItemReceiver.ReceiverStarted">
+            <summary>
+            Occurs after the receiver has started.
+            </summary>
+        </member>
+        <member name="E:Unity.ItemReceiver.ItemReceiver.ReceiverStopped">
+            <summary>
+            Occurs after the receiver has stopped.
+            </summary>
+        </member>
+        <member name="M:Unity.ItemReceiver.ItemReceiver.OnNewLogMessage(System.String)">
+            <summary>
+            Raises the <see cref="E:Unity.ItemReceiver.ItemReceiver.NewLogMessage"/> event.
+            </summary>
+            <param name="message">The log message.</param>
+        </member>
+        <member name="M:Unity.ItemReceiver.ItemReceiver.OnReceiverStarted(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:Unity.ItemReceiver.ItemReceiver.ReceiverStarted"/> event.
+            </summary>
+            <param name="e">The event data.</param>
+        </member>
+        <member name="M:Unity.ItemReceiver.ItemReceiver.OnReceiverStopped(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:Unity.ItemReceiver.ItemReceiver.ReceiverStopped"/> event.
+            </summary>
+            <param name="e">The event data.</param>
+        </member>
+        <member name="P:Unity.ItemReceiver.ItemReceiver.IsRunning">
+            <summary>
+            Gets a flag indicating if data reception is running currently.
+            </summary>
+        </member>
+        <member name="F:Unity.ItemReceiver.ItemReceiver._itemReceived">
+            <summary>
+            Wait handle to synchronize asynchronous receiving of items.
+            </summary>
+        </member>
+        <member name="M:Unity.ItemReceiver.ItemReceiver.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:Unity.ItemReceiver.ItemReceiver"/>.
+            </summary>
+        </member>
+        <member name="M:Unity.ItemReceiver.ItemReceiver.BeginReceiving(System.Net.IPAddress,System.Int32)">
+            <summary>
+            Starts a UDP client receiving <see cref="T:Intendix.Board.BoardItem"/> objects sent from intendiX in a seperate thread.
+            </summary>
+            <param name="ip">The IP address of the sending intendiX PC.</param>
+            <param name="port">The number of the port where intendiX sends the data to.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">If the specified <paramref name="port"/> is invalid.</exception>
+        </member>
+        <member name="M:Unity.ItemReceiver.ItemReceiver.EndReceiving">
+            <summary>
+            Stops receiving <see cref="T:Intendix.Board.BoardItem"/> objects from the network.
+            </summary>
+        </member>
+        <member name="M:Unity.ItemReceiver.ItemReceiver.DoReceiving(System.Object)">
+            <summary>
+            Receives <see cref="T:Intendix.Board.BoardItem"/> objects sent from intendiX as long as <see cref="F:Unity.ItemReceiver.ItemReceiver._isRunning"/> equals <b>true</b>.
+            </summary>
+            <param name="ipEndPoint">An <see cref="T:System.Net.IPEndPoint"/> object containing the IP address and the port at which the data should be received.</param>
+        </member>
+        <member name="M:Unity.ItemReceiver.ItemReceiver.UdpClient_ItemReceived(System.IAsyncResult)">
+            <summary>
+            Callback of the UDP client on reception of data.
+            If a <see cref="T:Intendix.Board.BoardItem"/> has been received, the <see cref="M:Unity.ItemReceiver.ItemReceiver.ItemReceived(Intendix.Board.BoardItem)"/> method will be called.
+            </summary>
+            <param name="asyncResult"></param>
+        </member>
+        <member name="M:Unity.ItemReceiver.ItemReceiver.ItemReceived(Intendix.Board.BoardItem)">
+            <summary>
+            When an item has been received, this method will be executed.
+            </summary>
+            <param name="item">The received <see cref="T:Intendix.Board.BoardItem"/>.</param>
+            <remarks>Any exception thrown by this method will be caught and a log message will be populated through the <see cref="E:Unity.ItemReceiver.ItemReceiver.NewLogMessage"/> event.</remarks>
+        </member>
+    </members>
+</doc>
