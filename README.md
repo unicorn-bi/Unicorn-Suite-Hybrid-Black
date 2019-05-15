@@ -6,7 +6,7 @@ Information:
 [Unicorn Suite](https://github.com/unicorn-bi/Unicorn-Suite-1.18/wiki)
 
 FAQ:
-[Unicorn FAQs](https://www.unicorn-bi.com)
+[Unicorn FAQs](https://www.unicorn-bi.com/faq/)
 
 Issues:
 [Unicorn Suite Issues](https://github.com/unicorn-bi/Unicorn-Suite-1.18/issues)
