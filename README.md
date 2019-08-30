@@ -1,5 +1,7 @@
 # Unicorn Suite Hybrid Black
+The Unicorn Brain Interface is a high-quality wireless EEG-headset for brain-computer interface (BCI) applications to perfectly acquire brain waves. The Unicorn Brain Interface allows developers, artists and makers to acquire and process brain signals, ranging from simple display of the signals, to design and control attached devices or interact e.g. with artistic installations, toys, computer programs or applications. Unicorn Brain Interface acquires EEG from eight Unicorn Hybrid EEG Electrodes and comes with the Unicorn Suite, the main software application for the Unicorn Brain Interface. The data is sampled with 24 Bit and sampled with 250 Hz per channel. The unique Unicorn hybrid EEG electrodes allow users to record dry or with gel which enables the usage for many different applications.
 
+# Unicorn Hybrid Black Video Tutorials
 ### Unicorn Hybrid Black Tutorial: Unicorn Suite
 [![Unicorn Hybrid Black Tutorial: Unicorn Suite](https://img.youtube.com/vi/LOfIr2F7-Tc/0.jpg)](https://youtu.be/LOfIr2F7-Tc "Unicorn Hybrid Black Tutorial: Unicorn Suite")
 
