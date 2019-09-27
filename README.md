@@ -38,6 +38,9 @@ The Unicorn Brain Interface is a high-quality wireless EEG-headset for brain-com
 ### Unicorn Hybrid Black Tutorial: User Dataprogram Protocol (UDP)
 [![Unicorn Hybrid Black Tutorial: User Dataprogram Protocol (UDP)](https://img.youtube.com/vi/Wh_C299mCyU/0.jpg)](https://youtu.be/Wh_C299mCyU "Unicorn Hybrid Black Tutorial: User Dataprogram Protocol (UDP)")
 
+### Unicorn Hybrid Black Tutorial: Unity
+[![Unicorn Hybrid Black Tutorial: Unity](https://img.youtube.com/vi/fAVcfhJZksc/0.jpg)](https://youtu.be/fAVcfhJZksc "Unicorn Hybrid Black Tutorial: Unity")
+
 FAQ:
 [Unicorn FAQs](https://www.unicorn-bi.com/faq/)
 
