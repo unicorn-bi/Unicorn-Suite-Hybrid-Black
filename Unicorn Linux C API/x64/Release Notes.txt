@@ -1,0 +1,8 @@
+Unicorn Linux C API - Release Notes
+================================
+
+
+Version 1.18.00
+---------------
+
+- Initial Release.
