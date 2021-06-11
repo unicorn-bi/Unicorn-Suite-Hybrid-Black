@@ -41,6 +41,9 @@ The Unicorn Brain Interface is a high-quality wireless EEG-headset for brain-com
 ### Unicorn Hybrid Black Tutorial: Unity
 [![Unicorn Hybrid Black Tutorial: Unity](https://img.youtube.com/vi/fAVcfhJZksc/0.jpg)](https://youtu.be/fAVcfhJZksc "Unicorn Hybrid Black Tutorial: Unity")
 
+### BR41N.IO Hackathon inspiration
+[![BR41N.IO Hackathon inspiration](https://img.youtube.com/vi/dqqYjm-p6Sc/0.jpg)](https://www.youtube.com/c/BR41NIO/videos "BR41N.IO Hackathon inspiration")
+
 FAQ:
 [Unicorn FAQs](https://www.unicorn-bi.com/faq/)
 
