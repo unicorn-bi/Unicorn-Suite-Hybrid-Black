@@ -29,12 +29,12 @@ namespace UnicornLSL
         /// <summary>
         /// The current lsl info.
         /// </summary>
-        liblsl.StreamInfo _lslInfo = null;
+        List<liblsl.StreamInfo> _lslInfos = null;
 
         /// <summary>
         /// The current lsl outlet.
         /// </summary>
-        liblsl.StreamOutlet _lslOutlet = null;
+        List<liblsl.StreamOutlet> _lslOutlets = null;
 
         /// <summary>
         /// Flag indicating the acquisition state.
@@ -49,7 +49,21 @@ namespace UnicornLSL
         public MainUI()
         {
             InitializeComponent();
+
+            rbSplitSignals.Checked = false;
+            rbCombineSigbnals.Checked = true;
+
             UpdateUIElements(DeviceStates.NotConnected);
+        }
+
+        /// <summary>
+        /// Terminates acquisition and stream if running
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainUI_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Uninitialize();
         }
 
         /// <summary>
@@ -104,66 +118,97 @@ namespace UnicornLSL
             //if no device opened
             if(_device == null)
             {
-                try
-                {
-                    //connect to currently selected device   
-                    string serial = cbDevices.SelectedItem.ToString();
-
-                    string streamName;
-                    if (tbStreamName.Text.Length <= 0 || tbStreamName.Text == null)
-                    {
-                        streamName = "Unicorn";
-                        tbStreamName.Text = streamName;
-                    }
-                    else
-                        streamName = tbStreamName.Text;
-
-                    Thread connectionThread = new Thread(() => ConnectionThread_DoWork(serial,streamName));
-                    connectionThread.Start();
-                }
-                catch (DeviceException ex)
-                {
-                    _device = null;
-                    UpdateUIElements(DeviceStates.NotConnected);
-                    ShowErrorBox(ex.Message);
-                }
-                catch (Exception ex)
-                {
-                    _device = null;
-                    UpdateUIElements(DeviceStates.NotConnected);
-                    ShowErrorBox(String.Format("Could not open device. {0}", ex.Message));
-                }
+                Initialize();
             }
             //if device opened
             else
             {
-                try
-                {
-                    //stop acquisition thread if running
-                    if (_acquisitionRunning)
-                    {
-                        _acquisitionRunning = false;
-                        _acquisitionThread.Join();
-                    }
-
-                    //close device
-                    _device.Dispose();
-                    _device = null;
-
-                    //uninitialize lsl
-                    _lslInfo = null;
-                    _lslOutlet = null;
-
-                    UpdateUIElements(DeviceStates.NotConnected);
-                }              
-                catch
-                {
-                    _device = null;
-                    _lslInfo = null;
-                    _lslOutlet = null;
-                    UpdateUIElements(DeviceStates.NotConnected);
-                }
+                Uninitialize();
             }        
+        }
+
+        /// <summary>
+        /// Connects to a device and creates lsl streams.
+        /// </summary>
+        private void Initialize()
+        {
+            try
+            {
+                //connect to currently selected device   
+                string serial = cbDevices.SelectedItem.ToString();
+
+                string streamName;
+                if (tbStreamName.Text.Length <= 0 || tbStreamName.Text == null)
+                {
+                    streamName = serial;
+                    tbStreamName.Text = streamName;
+                }
+                else
+                    streamName = tbStreamName.Text;
+
+                Thread connectionThread = new Thread(() => ConnectionThread_DoWork(serial, streamName));
+                connectionThread.Start();
+            }
+            catch (DeviceException ex)
+            {
+                _device = null;
+                UpdateUIElements(DeviceStates.NotConnected);
+                ShowErrorBox(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _device = null;
+                UpdateUIElements(DeviceStates.NotConnected);
+                ShowErrorBox(String.Format("Could not open device. {0}", ex.Message));
+            }
+        }
+
+        /// <summary>
+        /// Terminates a running data acquisition, closes the device and lsl outlets.
+        /// </summary>
+        private void Uninitialize()
+        {
+            try
+            {
+                //stop acquisition thread if running
+                if (_acquisitionRunning)
+                {
+                    _acquisitionRunning = false;
+                    _acquisitionThread.Join();
+                }
+
+                //close device
+                _device.Dispose();
+                _device = null;
+
+                //uninitialize lsl
+                if (_lslInfos.Count > 0)
+                    _lslInfos.Clear();
+
+                _lslInfos = null;
+
+                if (_lslOutlets.Count > 0)
+                    _lslOutlets.Clear();
+
+                _lslOutlets = null;
+
+                UpdateUIElements(DeviceStates.NotConnected);
+            }
+            catch
+            {
+                _device = null;
+                if (_lslInfos != null &&_lslInfos.Count > 0)
+                    _lslInfos.Clear();
+
+                _lslInfos = null;
+
+                if (_lslOutlets != null && _lslOutlets.Count > 0)
+                    _lslOutlets.Clear();
+
+                _lslOutlets = null;
+
+                UpdateUIElements(DeviceStates.NotConnected);
+            }
         }
 
         /// <summary>
@@ -214,8 +259,38 @@ namespace UnicornLSL
                 _device = new Unicorn(serial);
 
                 //Initialize lsl
-                _lslInfo = new liblsl.StreamInfo(streamName, "Data", (int) _device.GetNumberOfAcquiredChannels(), Unicorn.SamplingRate, liblsl.channel_format_t.cf_float32, serial);
-                _lslOutlet = new liblsl.StreamOutlet(_lslInfo);
+                if(_lslInfos == null)
+                    _lslInfos = new List<liblsl.StreamInfo>();
+
+                if(_lslOutlets == null)
+                    _lslOutlets = new List<liblsl.StreamOutlet>();
+
+                if (rbCombineSigbnals.Checked)
+                {
+                    _lslInfos.Add(new liblsl.StreamInfo(streamName, "Data", (int)_device.GetNumberOfAcquiredChannels(), Unicorn.SamplingRate, liblsl.channel_format_t.cf_float32, serial));
+                    _lslOutlets.Add(new liblsl.StreamOutlet(_lslInfos[0]));
+                }
+                else
+                {
+                    int cnt = 0;
+                    _lslInfos.Add(new liblsl.StreamInfo(streamName + "_EEG", "EEG", (int)Unicorn.EEGChannelsCount, Unicorn.SamplingRate, liblsl.channel_format_t.cf_float32, serial));
+                    _lslOutlets.Add(new liblsl.StreamOutlet(_lslInfos[cnt]));
+                    cnt++;
+                    _lslInfos.Add(new liblsl.StreamInfo(streamName + "_ACC", "ACC", (int)Unicorn.AccelerometerChannelsCount, Unicorn.SamplingRate, liblsl.channel_format_t.cf_float32, serial));
+                    _lslOutlets.Add(new liblsl.StreamOutlet(_lslInfos[cnt]));
+                    cnt++;
+                    _lslInfos.Add(new liblsl.StreamInfo(streamName + "_GYR", "GYR", (int)Unicorn.GyroscopeChannelsCount, Unicorn.SamplingRate, liblsl.channel_format_t.cf_float32, serial));
+                    _lslOutlets.Add(new liblsl.StreamOutlet(_lslInfos[cnt]));
+                    cnt++;
+                    _lslInfos.Add(new liblsl.StreamInfo(streamName + "_CNT", "CNT", (int)1, Unicorn.SamplingRate, liblsl.channel_format_t.cf_float32, serial));
+                    _lslOutlets.Add(new liblsl.StreamOutlet(_lslInfos[cnt]));
+                    cnt++;
+                    _lslInfos.Add(new liblsl.StreamInfo(streamName + "_BAT", "BAT", (int)1, Unicorn.SamplingRate, liblsl.channel_format_t.cf_float32, serial));
+                    _lslOutlets.Add(new liblsl.StreamOutlet(_lslInfos[cnt]));
+                    cnt++;
+                    _lslInfos.Add(new liblsl.StreamInfo(streamName + "_VALID", "VALID", (int)1, Unicorn.SamplingRate, liblsl.channel_format_t.cf_float32, serial));
+                    _lslOutlets.Add(new liblsl.StreamOutlet(_lslInfos[cnt]));
+                }
 
                 UpdateUIElements(DeviceStates.Connected);
             }
@@ -263,7 +338,52 @@ namespace UnicornLSL
                         receiveBufferFloat[j] = BitConverter.ToSingle(receiveBuffer, j * sizeof(float));
 
                     // send sample via LSL
-                    _lslOutlet.push_sample(receiveBufferFloat);
+                    if (rbCombineSigbnals.Checked)
+                    {
+                        _lslOutlets[0].push_sample(receiveBufferFloat);
+                    }
+                    else
+                    {
+                        for(int i = 0; i < _lslOutlets.Count; i ++)
+                        {
+                            if(i==0)
+                            {
+                                float[] eeg = new float[Unicorn.EEGChannelsCount];
+                                Array.Copy(receiveBufferFloat, 0, eeg, 0, Unicorn.EEGChannelsCount);
+                                _lslOutlets[i].push_sample(eeg);
+                            }
+                            else if (i == 1)
+                            {
+                                float[] acc = new float[Unicorn.AccelerometerChannelsCount];
+                                Array.Copy(receiveBufferFloat, Unicorn.EEGChannelsCount, acc, 0, Unicorn.AccelerometerChannelsCount);
+                                _lslOutlets[i].push_sample(acc);
+                            }
+                            else if (i == 2)
+                            {
+                                float[] gyr = new float[Unicorn.GyroscopeChannelsCount];
+                                Array.Copy(receiveBufferFloat, Unicorn.EEGChannelsCount + Unicorn.AccelerometerChannelsCount, gyr, 0, Unicorn.GyroscopeChannelsCount);
+                                _lslOutlets[i].push_sample(gyr);
+                            }
+                            else if (i == 3)
+                            {
+                                float[] cnt = new float[1];
+                                Array.Copy(receiveBufferFloat, Unicorn.EEGChannelsCount + Unicorn.AccelerometerChannelsCount + Unicorn.GyroscopeChannelsCount, cnt, 0, 1);
+                                _lslOutlets[i].push_sample(cnt);
+                            }
+                            else if (i == 4)
+                            {
+                                float[] bat = new float[1];
+                                Array.Copy(receiveBufferFloat, Unicorn.EEGChannelsCount + Unicorn.AccelerometerChannelsCount + Unicorn.GyroscopeChannelsCount + 1, bat, 0, 1);
+                                _lslOutlets[i].push_sample(bat);
+                            }
+                            else if (i == 5)
+                            {
+                                float[] val = new float[1];
+                                Array.Copy(receiveBufferFloat, Unicorn.EEGChannelsCount + Unicorn.AccelerometerChannelsCount + Unicorn.GyroscopeChannelsCount + 2, val, 0, 1);
+                                _lslOutlets[i].push_sample(val);
+                            }
+                        }
+                    }  
                 }
             }
             finally
@@ -303,6 +423,8 @@ namespace UnicornLSL
                     btnStartStop.Text = "Start";
                     btnStartStop.Enabled = false;
                     tbStreamName.Enabled = true;
+                    rbSplitSignals.Enabled = true;
+                    rbCombineSigbnals.Enabled = true;
                 }
                 else if (state == DeviceStates.Connecting)
                 {
@@ -313,6 +435,8 @@ namespace UnicornLSL
                     btnStartStop.Text = "Start";
                     btnStartStop.Enabled = false;
                     tbStreamName.Enabled = false;
+                    rbSplitSignals.Enabled = false;
+                    rbCombineSigbnals.Enabled = false;
                 }
                 else if (state == DeviceStates.Connected)
                 {
@@ -323,6 +447,8 @@ namespace UnicornLSL
                     btnStartStop.Text = "Start";
                     btnStartStop.Enabled = true;
                     tbStreamName.Enabled = false;
+                    rbSplitSignals.Enabled = false;
+                    rbCombineSigbnals.Enabled = false;
                 }
                 else if (state == DeviceStates.Acquiring)
                 {
@@ -333,6 +459,8 @@ namespace UnicornLSL
                     btnStartStop.Text = "Stop";
                     btnStartStop.Enabled = true;
                     tbStreamName.Enabled = false;
+                    rbSplitSignals.Enabled = false;
+                    rbCombineSigbnals.Enabled = false;
                 }
                 else
                 {
@@ -343,6 +471,8 @@ namespace UnicornLSL
                     btnStartStop.Text = "Start";
                     btnStartStop.Enabled = false;
                     tbStreamName.Enabled = false;
+                    rbSplitSignals.Enabled = false;
+                    rbCombineSigbnals.Enabled = false;
                 }
             }
         }

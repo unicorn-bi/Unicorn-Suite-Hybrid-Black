@@ -36,6 +36,8 @@
             this.lblDevices = new System.Windows.Forms.Label();
             this.cbDevices = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbSplitSignals = new System.Windows.Forms.RadioButton();
+            this.rbCombineSigbnals = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.tbStreamName = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -58,7 +60,7 @@
             this.pnlLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.pnlLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.pnlLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.pnlLayout.Size = new System.Drawing.Size(284, 301);
+            this.pnlLayout.Size = new System.Drawing.Size(284, 355);
             this.pnlLayout.TabIndex = 0;
             this.pnlLayout.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.pnlLayout_CellPaint);
             // 
@@ -77,7 +79,7 @@
             this.gbUnicorn.Location = new System.Drawing.Point(10, 90);
             this.gbUnicorn.Margin = new System.Windows.Forms.Padding(10);
             this.gbUnicorn.Name = "gbUnicorn";
-            this.gbUnicorn.Size = new System.Drawing.Size(264, 90);
+            this.gbUnicorn.Size = new System.Drawing.Size(264, 117);
             this.gbUnicorn.TabIndex = 0;
             this.gbUnicorn.TabStop = false;
             this.gbUnicorn.Text = "Unicorn Settings";
@@ -161,16 +163,40 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.AutoSize = true;
+            this.groupBox2.Controls.Add(this.rbSplitSignals);
+            this.groupBox2.Controls.Add(this.rbCombineSigbnals);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.tbStreamName);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(10, 200);
+            this.groupBox2.Location = new System.Drawing.Point(10, 227);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(10);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(264, 91);
+            this.groupBox2.Size = new System.Drawing.Size(264, 118);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "LSL Settings";
+            // 
+            // rbSplitSignals
+            // 
+            this.rbSplitSignals.AutoSize = true;
+            this.rbSplitSignals.Location = new System.Drawing.Point(7, 89);
+            this.rbSplitSignals.Name = "rbSplitSignals";
+            this.rbSplitSignals.Size = new System.Drawing.Size(184, 17);
+            this.rbSplitSignals.TabIndex = 7;
+            this.rbSplitSignals.TabStop = true;
+            this.rbSplitSignals.Text = "send each signal in one stream";
+            this.rbSplitSignals.UseVisualStyleBackColor = true;
+            // 
+            // rbCombineSigbnals
+            // 
+            this.rbCombineSigbnals.AutoSize = true;
+            this.rbCombineSigbnals.Location = new System.Drawing.Point(7, 68);
+            this.rbCombineSigbnals.Name = "rbCombineSigbnals";
+            this.rbCombineSigbnals.Size = new System.Drawing.Size(177, 17);
+            this.rbCombineSigbnals.TabIndex = 6;
+            this.rbCombineSigbnals.TabStop = true;
+            this.rbCombineSigbnals.Text = "send all signals in one stream";
+            this.rbCombineSigbnals.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -212,13 +238,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(284, 301);
+            this.ClientSize = new System.Drawing.Size(284, 355);
             this.Controls.Add(this.pnlLayout);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(300, 340);
             this.Name = "MainUI";
             this.Text = "Unicorn LSL";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainUI_FormClosed);
             this.Shown += new System.EventHandler(this.MainUI_Shown);
             this.pnlLayout.ResumeLayout(false);
             this.pnlLayout.PerformLayout();
@@ -243,6 +270,8 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbStreamName;
+        private System.Windows.Forms.RadioButton rbSplitSignals;
+        private System.Windows.Forms.RadioButton rbCombineSigbnals;
     }
 }
 
