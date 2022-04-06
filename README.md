@@ -20,6 +20,12 @@ The Unicorn Brain Interface is a high-quality wireless EEG-headset for brain-com
 ### Unicorn Hybrid Black Tutorial: Unicorn Speller - Sphero add-on
 [![Unicorn Hybrid Black Tutorial: Unicorn Speller - Sphero add-on](https://img.youtube.com/vi/FmSKfg4SZq0/0.jpg)](https://youtu.be/FmSKfg4SZq0 "Unicorn Hybrid Black Tutorial: Unicorn Speller - Sphero add-on")
 
+### Unicorn Hybrid Black Tutorial: Unicorn Blondy Check
+[![Unicorn Hybrid Black Tutorial: Unicorn Blondy Check](https://img.youtube.com/vi/RkLV8xzerfg/0.jpg)](https://youtu.be/RkLV8xzerfg "Unicorn Hybrid Black Tutorial: Unicorn Blondy Check")
+
+### Unicorn Hybrid Black Tutorial: Unicorn Bandpower
+[![Unicorn Hybrid Black Tutorial: Unicorn Bandpower](https://img.youtube.com/vi/VtA9E0hgUA/0.jpg)](https://youtu.be/_VtA9E0hgUA "Unicorn Hybrid Black Tutorial: Unicorn Bandpower")
+
 ### Unicorn Hybrid Black Tutorial: Python API
 [![Unicorn Hybrid Black Tutorial: Python API](https://img.youtube.com/vi/N0d_B0jergs/0.jpg)](https://youtu.be/N0d_B0jergs "Unicorn Hybrid Black Tutorial: Python API")
 
