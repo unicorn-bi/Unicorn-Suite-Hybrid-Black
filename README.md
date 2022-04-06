@@ -38,6 +38,9 @@ The Unicorn Brain Interface is a high-quality wireless EEG-headset for brain-com
 ### Unicorn Hybrid Black Tutorial: Dev Tools - .NET API
 [![Unicorn Hybrid Black Tutorial: Dev Tools - .NET API](https://img.youtube.com/vi/U8xWlIyY4DI/0.jpg)](https://youtu.be/U8xWlIyY4DI "Unicorn Hybrid Black Tutorial: Dev Tools - .NET API")
 
+### Unicorn Hybrid Black Tutorial: Android API
+[![Unicorn Hybrid Black Tutorial: Android API](https://img.youtube.com/vi/2Oi7AAHapNw/0.jpg)](https://youtu.be/2Oi7AAHapNw "Unicorn Hybrid Black Tutorial: Android API")
+
 ### Unicorn Hybrid Black Tutorial: Lab Streaming Layer (LSL)
 [![Unicorn Hybrid Black Tutorial: Lab Streaming Layer (LSL)](https://img.youtube.com/vi/l18lJ7MGU38/0.jpg)](https://youtu.be/l18lJ7MGU38 "Unicorn Hybrid Black Tutorial: Lab Streaming Layer (LSL)")
 
