@@ -15,6 +15,5 @@ Prerequisites:
 2. Create a "Plugins" folder in the "Assets" folder
 3. Copy "Unicorn.dll" and "UnicornDotNet.dll" from "C:\Users\<username>\Documents\gtec\Unicorn Suite\Hybrid Black\Unicorn DotNet\Lib" to the "Plugins" folder
 4. Copy "UnicornUnity.cs" to the Assets folder
-5. Attach the script to a gameobject in Unity
-<br>
+5. Attach the script to a gameobject in Unity <br>
 ![alt text][screenshot]
