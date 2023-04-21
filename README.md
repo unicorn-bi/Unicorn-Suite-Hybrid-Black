@@ -24,7 +24,7 @@ The Unicorn Brain Interface is a high-quality wireless EEG-headset for brain-com
 [![Unicorn Hybrid Black Tutorial: Unicorn Blondy Check](https://img.youtube.com/vi/RkLV8xzerfg/0.jpg)](https://youtu.be/RkLV8xzerfg "Unicorn Hybrid Black Tutorial: Unicorn Blondy Check")
 
 ### Unicorn Hybrid Black Tutorial: Unicorn Bandpower
-[![Unicorn Hybrid Black Tutorial: Unicorn Bandpower](https://img.youtube.com/vi/VtA9E0hgUA/0.jpg)](https://youtu.be/_VtA9E0hgUA "Unicorn Hybrid Black Tutorial: Unicorn Bandpower")
+[![Unicorn Hybrid Black Tutorial: Unicorn Bandpower](https://img.youtube.com/vi/_VtA9E0hgUA/0.jpg)](https://youtu.be/_VtA9E0hgUA "Unicorn Hybrid Black Tutorial: Unicorn Bandpower")
 
 ### Unicorn Hybrid Black Tutorial: Python API
 [![Unicorn Hybrid Black Tutorial: Python API](https://img.youtube.com/vi/N0d_B0jergs/0.jpg)](https://youtu.be/N0d_B0jergs "Unicorn Hybrid Black Tutorial: Python API")
@@ -47,8 +47,11 @@ The Unicorn Brain Interface is a high-quality wireless EEG-headset for brain-com
 ### Unicorn Hybrid Black Tutorial: User Dataprogram Protocol (UDP)
 [![Unicorn Hybrid Black Tutorial: User Dataprogram Protocol (UDP)](https://img.youtube.com/vi/Wh_C299mCyU/0.jpg)](https://youtu.be/Wh_C299mCyU "Unicorn Hybrid Black Tutorial: User Dataprogram Protocol (UDP)")
 
-### Unicorn Hybrid Black Tutorial: Unity
+### Unicorn Hybrid Black Tutorial: Speller Unity Interface
 [![Unicorn Hybrid Black Tutorial: Unity](https://img.youtube.com/vi/fAVcfhJZksc/0.jpg)](https://youtu.be/fAVcfhJZksc "Unicorn Hybrid Black Tutorial: Unity")
+
+### Unicorn Hybrid Black Tutorial: Unicorn Unity Interface
+[![Unicorn Hybrid Black Tutorial: Unity Unity Interface](https://img.youtube.com/vi/rzqhs7_-RgI/0.jpg)](https://youtu.be/rzqhs7_-RgI "Unicorn Hybrid Black Tutorial: Unity Unity Interface")
 
 ### BR41N.IO Hackathon inspiration
 [![BR41N.IO Hackathon inspiration](https://img.youtube.com/vi/dqqYjm-p6Sc/0.jpg)](https://www.youtube.com/c/BR41NIO/videos "BR41N.IO Hackathon inspiration")
